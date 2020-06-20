@@ -24,9 +24,6 @@
 set Path_Project=%~dp0
 set Path_Python=py
 
-:: init tools path
-set Tool_PyInstaller=%Path_Python%\Scripts\pyinstaller.exe
-
 :: make resources
 py -m PyQt5.pyrcc_main -o "%Path_Project%\Resources\Resources.py" "%Path_Project%\Resources\__resources.qrc"
 

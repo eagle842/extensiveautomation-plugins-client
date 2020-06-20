@@ -22,8 +22,8 @@
 
 set Project=%~dp0..\..\
 
-set PythonVersion=34
-set PythonPath=C:\Users\frup59150\AppData\Local\Programs\Python\Python35-32
+set PythonVersion=37
+set PythonPath=C:\Users\wwcp3893\AppData\Local\Programs\Python\Python37-32
 set PyQtPath=Lib\site-packages\PyQt5\
 
 :: build resources
