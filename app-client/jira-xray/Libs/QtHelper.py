@@ -38,7 +38,7 @@ except ImportError:
 							QPushButton, QHBoxLayout, QLabel, QDialog, QDesktopWidget, 
 							QVBoxLayout, QSizePolicy, QProgressBar, QAction)
 	from PyQt5.QtCore import (Qt, pyqtSignal, QVariant, QSize, QPointF, QRect)
-	from PyQt5.Qsci import (QsciScintilla, QsciLexerPython, QsciLexerXML)
+	#from PyQt5.Qsci import (QsciScintilla, QsciLexerPython, QsciLexerXML)
 	
 import os
 import sys

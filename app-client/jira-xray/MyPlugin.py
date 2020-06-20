@@ -44,21 +44,15 @@ __END__="2020"
 # date and time of the buid
 __BUILDTIME__="17/06/2020 10:33:15"
 # debug mode
-DEBUGMODE=True
+DEBUGMODE=False
 
-try:
-    from PyQt4.QtGui import (QWidget, QApplication, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout,
-                                QMessageBox, QFileDialog,QAbstractItemView, QTableView, QTabWidget, QLabel,
-                                QGridLayout, QGroupBox, QLineEdit, QCheckBox, QRadioButton  )
-    from PyQt4.QtCore import ( Qt, QObject, pyqtSignal, QAbstractTableModel, QModelIndex,
-                                QAbstractTableModel, QFile )         
-except ImportError:
-    from PyQt5.QtWidgets import (QApplication, QWidget, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout,
-                                 QMessageBox, QFileDialog, QAbstractItemView, QTableView, QTabWidget, QLabel,
-                                 QGridLayout, QGroupBox, QLineEdit, QCheckBox, QRadioButton )
-    from PyQt5.QtGui import QTextCursor
-    from PyQt5.QtCore import ( Qt, QObject, pyqtSignal, QAbstractTableModel, QModelIndex,
-                                QAbstractTableModel, QFile)    
+
+from PyQt5.QtWidgets import (QApplication, QWidget, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout,
+                                QMessageBox, QFileDialog, QAbstractItemView, QTableView, QTabWidget, QLabel,
+                                QGridLayout, QGroupBox, QLineEdit, QCheckBox, QRadioButton )
+from PyQt5.QtGui import QTextCursor
+from PyQt5.QtCore import ( Qt, QObject, pyqtSignal, QAbstractTableModel, QModelIndex,
+                            QAbstractTableModel, QFile)    
     
 import CorePlugin
 import Settings
