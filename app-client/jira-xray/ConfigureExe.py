@@ -26,45 +26,43 @@ import sys
 
 import Settings
 
+# Initialize settings module
+Settings.initialize()
+settings = Settings.instance()
 
-def run():
-    # Initialize settings module
-    Settings.initialize()
-    settings = Settings.instance()
+# Reset settings with default values
+settings.setValue( key='Trace/level', value='INFO' )
 
-    # Reset settings with default values
-    settings.setValue( key='Trace/level', value='INFO' )
+# Writes any unsaved changes
+settings.settings.sync()
 
-    # Writes any unsaved changes
-    settings.settings.sync()
+# read the main python file to change some constant
+fd = open( "%s/MyPlugin.py" % settings.dirExec ,"r")
+mainLines = fd.readlines()
+fd.close()
 
-    # read the main python file to change some constant
-    fd = open( "%s/MyPlugin.py" % settings.dirExec ,"r")
-    mainLines = fd.readlines()
-    fd.close()
-
-    # prepare the build date
-    today = datetime.datetime.today()
-    buildTime = today.strftime("%d/%m/%Y %H:%M:%S")
-    buildYear = today.strftime("%Y")
+# prepare the build date
+today = datetime.datetime.today()
+buildTime = today.strftime("%d/%m/%Y %H:%M:%S")
+buildYear = today.strftime("%Y")
 
 
-    # parse all lines
-    newLines = []
-    for line in mainLines:
-        if line.startswith("__END__"):
-            newLines.append( "__END__=\"%s\"\n" % buildYear )
-        elif line.startswith("__BUILDTIME__"):
-            newLines.append( "__BUILDTIME__=\"%s\"\n" % buildTime )
-        elif line.startswith("DEBUGMODE"):
-            newLines.append( "DEBUGMODE=False\n" )
-        else:
-            newLines.append( line )
+# parse all lines
+newLines = []
+for line in mainLines:
+    if line.startswith("__END__"):
+        newLines.append( "__END__=\"%s\"\n" % buildYear )
+    elif line.startswith("__BUILDTIME__"):
+        newLines.append( "__BUILDTIME__=\"%s\"\n" % buildTime )
+    elif line.startswith("DEBUGMODE"):
+        newLines.append( "DEBUGMODE=False\n" )
+    else:
+        newLines.append( line )
 
-    # write changes
-    fd = open( "%s/MyPlugin.py" % settings.dirExec ,"w")
-    fd.writelines( "".join(newLines) )
-    fd.close()
+# write changes
+fd = open( "%s/MyPlugin.py" % settings.dirExec ,"w")
+fd.writelines( "".join(newLines) )
+fd.close()
 
-    # Finalize settings
-    Settings.finalize()
+# Finalize settings
+Settings.finalize()

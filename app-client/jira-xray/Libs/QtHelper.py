@@ -25,21 +25,12 @@
 Helper for QT
 """
 
-try:
-	from PyQt4.QtGui import (QColor, QToolButton, QApplication, QTextEdit, QWidget, 
-							QLineEdit, QPushButton, QHBoxLayout, QLabel, QDialog, QIcon, 
-							QDesktopWidget, QVBoxLayout, QSizePolicy, QMovie, QProgressBar, 
-							QPixmap, QAction, QPainter, QRadialGradient, QTransform)
-	from PyQt4.QtCore import (Qt, pyqtSignal, QVariant, QSize, QPointF, QRect)
-	from PyQt4.Qsci import (QsciScintilla, QsciLexerPython, QsciLexerXML)
-except ImportError:
-	from PyQt5.QtGui import (QColor, QIcon, QMovie, QPixmap, QPainter, QRadialGradient, QTransform)
-	from PyQt5.QtWidgets import (QToolButton, QApplication, QTextEdit, QWidget, QLineEdit, 
-							QPushButton, QHBoxLayout, QLabel, QDialog, QDesktopWidget, 
-							QVBoxLayout, QSizePolicy, QProgressBar, QAction)
-	from PyQt5.QtCore import (Qt, pyqtSignal, QVariant, QSize, QPointF, QRect)
-	#from PyQt5.Qsci import (QsciScintilla, QsciLexerPython, QsciLexerXML)
-	
+from PyQt5.QtGui import (QColor, QIcon, QMovie, QPixmap, QPainter, QRadialGradient, QTransform)
+from PyQt5.QtWidgets import (QToolButton, QApplication, QTextEdit, QWidget, QLineEdit, 
+                        QPushButton, QHBoxLayout, QLabel, QDialog, QDesktopWidget, 
+                        QVBoxLayout, QSizePolicy, QProgressBar, QAction)
+from PyQt5.QtCore import (Qt, pyqtSignal, QVariant, QSize, QPointF, QRect)
+
 import os
 import sys
 import imp
