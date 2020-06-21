@@ -427,6 +427,7 @@ class RestHpAlmClient(QObject):
         # response = ET.fromstring( r.text.encode("utf8") )
         # testId = response.find("./Fields/Field[@Name='id']/Value")
         response = json.loads(r.text)
+        #logger("Response when creating test (%s) in test plan : %s" % (testName, response) )
         ret = None
         if len(response) > 0:
             if "key" in response[0].keys():
@@ -594,8 +595,15 @@ class RestHpAlmClient(QObject):
         # response = ET.fromstring( r.text.encode("utf8") )
         # testId = response.find("./Fields/Field[@Name='id']/Value")
         response = json.loads(r.text)
-        testId = response["id"]
-        testKey = response["key"]
+        # logger("response for creating run : %s" % response)
+        # if len(response) > 0:
+        testKey = None
+        if "key" in response['testExecIssue'].keys():
+            testId = response['testExecIssue']["id"]
+            testKey = response['testExecIssue']["key"]
+            ret = testKey
+        # testId = response["id"]
+        # testKey = response["key"]
         ret = testKey
         return ret
 
@@ -798,6 +806,7 @@ class RestHpAlmClient(QObject):
                     #            'testDescription': tc['purpose'] }
                     testId = self.RestCreateTest(self.logTestsStatus, tc['testname'], "")
                     self.logResultsStatus("testId2 = %s"% testId)
+                self.logResultsStatus("testId3 = %s"% testId)
                 self.logResultsStatus("tc[result] = %s"% tc["result"])
                 # create an execution with the status of the test
                 self.RestCreateRun(self.logResultsStatus, testId, tc["result"])
