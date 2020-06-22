@@ -370,6 +370,7 @@ class RestHpAlmClient(QObject):
                 self.logResultsStatus("tc[result] = %s"% tc["result"])
                 # create an execution with the status of the test
                 self.RestCreateRun(self.logResultsStatus, testId, tc["result"])
+                self.ResultsExported.emit(testcases, config)
 
         except Exception as e:
             self.logResultsStatus("Error on result(s) export" )

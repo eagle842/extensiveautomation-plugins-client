@@ -30,19 +30,19 @@ Main module
 """
 
 # name of the main developer
-__AUTHOR__ = 'Denis Machard'
+__AUTHOR__ = '"Emmanuel Monsoro'
 # email of the main developer
-__EMAIL__ = 'd.machard@gmail.com'
+__EMAIL__ = 'emmanuel.monsoro@wanadoo.fr'
 # list of contributors
-__CONTRIBUTORS__ = [ "Emmanuel Monsoro" ]
+__CONTRIBUTORS__ = [ "Denis Machard" ]
 # list of contributors
 __TESTERS__ = [ "Emmanuel Monsoro" ]
 # project start in year
-__BEGIN__="2016"
+__BEGIN__="2020"
 # year of the latest build
 __END__="2020"
 # date and time of the buid
-__BUILDTIME__="21/06/2020 16:27:53"
+__BUILDTIME__="22/06/2020 11:07:31"
 # debug mode
 DEBUGMODE=False
 

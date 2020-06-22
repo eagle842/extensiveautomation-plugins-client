@@ -98,8 +98,8 @@ VERDICT_EXAMPLE = """<?xml version="1.0" encoding="UTF-8"?>
 	</test>
 </tests>"""
 
-QC_PASSED      = "Passed"
-QC_FAILED      = "Failed"
+QC_PASSED      = "Pass"
+QC_FAILED      = "Fail"
 QC_UNCOMPLETED = "Not Completed"
 
 STEPS_COL_ID      =   0
@@ -1012,17 +1012,17 @@ class VerdictPage(QWidget):
         optionsLayout.addWidget(self.ignoreUncomplete)
         optionsLayout.addStretch(1)
             
-        optionsTsLayout = QHBoxLayout()
-        optionsTsLayout.addWidget(self.addTestsetCheckBox)
-        optionsTsLayout.addWidget(self.addTestinstanceCheckBox)
-        optionsTsLayout.addStretch(1)
+        # optionsTsLayout = QHBoxLayout()
+        # optionsTsLayout.addWidget(self.addTestsetCheckBox)
+        # optionsTsLayout.addWidget(self.addTestinstanceCheckBox)
+        # optionsTsLayout.addStretch(1)
         
         layoutGrid.addWidget(QLabel("Remote Test Set Path:"), 0, 0)
         layoutGrid.addWidget(self.testSetPath, 0, 1)
-        layoutGrid.addWidget(self.addMissingFoldersCheckBox, 1, 1)
+        # layoutGrid.addWidget(self.addMissingFoldersCheckBox, 1, 1)
         layoutGrid.addWidget(QLabel("Remote Test Set Name:"), 2, 0)
         layoutGrid.addWidget(self.testSetName, 2, 1)
-        layoutGrid.addLayout(optionsTsLayout, 3, 1)
+        # layoutGrid.addLayout(optionsTsLayout, 3, 1)
         layoutGrid.addWidget(QLabel("Local result(s):"), 4, 0)
         layoutGrid.addLayout(optionsLayout, 4, 1)
         layoutGrid.addWidget(QLabel("Test(s) Verdict:"), 5, 0)
@@ -1149,8 +1149,8 @@ class VerdictPage(QWidget):
     def onLoadTestcases(self, testcases):
         """
         """
-        if self.ignoreTestcases.isChecked():
-            return
+        # if self.ignoreTestcases.isChecked():
+        #     return
             
         self.stepsTable.clear()
         self.testcasesTable.loadTable(data=testcases)
