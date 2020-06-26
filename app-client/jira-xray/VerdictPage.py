@@ -39,6 +39,7 @@ except ImportError:
 from Libs import QtHelper, Logger
 
 import xml.etree.ElementTree as ET
+import copy
 
 # verdict use on debug mode only       
 VERDICT_EXAMPLE = """<?xml version="1.0" encoding="UTF-8"?>
@@ -946,7 +947,8 @@ class VerdictPage(QWidget):
         self.__core = core
         self.__debugMode = debugMode
         self.__rawXml = ""
-        
+        self.__listCsv = ""
+
         self.createWidgets()
         self.creationConnections()
         
@@ -1129,9 +1131,10 @@ class VerdictPage(QWidget):
 
         # reload data
         if self.__debugMode: 
-            self.readXml(rawXml=VERDICT_EXAMPLE)
+            self.readXmlAndCSV(rawXml=VERDICT_EXAMPLE)
         else:
-            self.readXml(rawXml=self.__rawXml)
+            self.readXmlAndCSV(rawXml=self.__rawXml, listCsv=self.__listCsv)
+            # self.readXml(rawXml=self.__rawXml)
         
     def clearTables(self):
         """
@@ -1174,7 +1177,7 @@ class VerdictPage(QWidget):
         else:
             return QC_UNCOMPLETED
         
-    def readXml(self, rawXml):
+    def readXmlAndCSV(self, rawXml, listCsv=None):
         """
         """
         # init and save the xml provided
@@ -1249,5 +1252,22 @@ class VerdictPage(QWidget):
                 test.update({"testcases": testcases})
                 tests.append(test)
             self.core().debug().addLogSuccess("Export results detected: %s"  % len(tests) )
+            if len(tests) == 0:
+                if listCsv is not None:
+                    self.__listCsv = listCsv
+                
+                    testsincsv = listCsv.splitlines()
+                    testcaseCSV = testsincsv[1].split(',')
+
+                    test = { 
+                                    "name": testcaseCSV[1], 
+                                    "result": self.convertResult(testcaseCSV[4]),
+                                    "testpath": testPath,
+                                    "testname": testcaseCSV[1],
+                                    "testcases": []
+                                }
+                    tests.append(test)
+
+            # finally loading all tests in table model
+            self.core().debug().addLogSuccess("first test in csv: %s"  % test )
             if len(tests): self.onLoadTests(data=tests)
-         

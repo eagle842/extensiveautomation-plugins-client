@@ -42,7 +42,7 @@ __BEGIN__="2020"
 # year of the latest build
 __END__="2020"
 # date and time of the buid
-__BUILDTIME__="22/06/2020 11:07:31"
+__BUILDTIME__="26/06/2020 08:52:40"
 # debug mode
 DEBUGMODE=False
 
@@ -167,7 +167,12 @@ class MainPage(QWidget):
         if "verdict-xml" in data.keys():
             self.mainTab.setTabEnabled(TAB_DESIGN_PAGE, False)
             self.mainTab.setTabEnabled(TAB_VERDICT_PAGE, True)
-            self.verdictPage.readXml(rawXml=data['verdict-xml'])
+            
+            if "verdict-csv" in data.keys():
+                self.verdictPage.readXmlAndCSV(rawXml=data['verdict-xml'], listCsv=data['verdict-csv'])
+            else:
+                self.verdictPage.readXmlAndCSV(rawXml=data['verdict-xml'])
+
         elif "design-xml" in data.keys():
             self.mainTab.setTabEnabled(TAB_DESIGN_PAGE, True)
             self.mainTab.setTabEnabled(TAB_VERDICT_PAGE, False)

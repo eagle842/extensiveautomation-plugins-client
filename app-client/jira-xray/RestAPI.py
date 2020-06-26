@@ -354,20 +354,20 @@ class RestHpAlmClient(QObject):
         """
         """
         try:
-            self.logResultsStatus("testcases = %s"% testcases)
+            self.logResultsStatus("Exporting tests0809")
             for tc in testcases:
-                self.logResultsStatus("tc = %s"% tc)
+                # self.logResultsStatus("tc = %s"% tc)
                 # Search for an existing test with the same test name and create it if needed
                 testId = self.RestFindTest(self.logTestsStatus, tc['testname'])
-                self.logResultsStatus("testId = %s"% testId)
+                # self.logResultsStatus("testId = %s"% testId)
                 if testId is None:
                     # funcParams = { 'logger': self.logTestsStatus, 
                     #            'testName': tc['testcase'],
                     #            'testDescription': tc['purpose'] }
                     testId = self.RestCreateTest(self.logTestsStatus, tc['testname'], "")
-                    self.logResultsStatus("testId2 = %s"% testId)
-                self.logResultsStatus("testId3 = %s"% testId)
-                self.logResultsStatus("tc[result] = %s"% tc["result"])
+                #     self.logResultsStatus("testId2 = %s"% testId)
+                # self.logResultsStatus("testId3 = %s"% testId)
+                # self.logResultsStatus("tc[result] = %s"% tc["result"])
                 # create an execution with the status of the test
                 self.RestCreateRun(self.logResultsStatus, testId, tc["result"])
                 self.ResultsExported.emit(testcases, config)
