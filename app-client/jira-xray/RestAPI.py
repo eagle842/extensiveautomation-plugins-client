@@ -155,13 +155,13 @@ class RestHpAlmClient(QObject):
         return ret
 
         
-    def RestCreateRun(self, logger, testId, testStatus):
+    def RestCreateRun(self, logger, testId, testStatus, testName):
         """
         """
         logger("Creating run" )
         data = {
                 "info" : {
-                    "summary" : "Execution of automated test by Extensive Automation",
+                    "summary" : "%s" % testName,
                     "description" : "This execution is automatically created by Extensive Automation",
                     "user" : "%s" % self.WsUsername
                 },
@@ -354,7 +354,7 @@ class RestHpAlmClient(QObject):
         """
         """
         try:
-            self.logResultsStatus("Exporting tests0809")
+            self.logResultsStatus("Exporting tests")
             for tc in testcases:
                 # self.logResultsStatus("tc = %s"% tc)
                 # Search for an existing test with the same test name and create it if needed
@@ -369,7 +369,7 @@ class RestHpAlmClient(QObject):
                 # self.logResultsStatus("testId3 = %s"% testId)
                 # self.logResultsStatus("tc[result] = %s"% tc["result"])
                 # create an execution with the status of the test
-                self.RestCreateRun(self.logResultsStatus, testId, tc["result"])
+                self.RestCreateRun(self.logResultsStatus, testId, tc["result"], tc['testname'])
                 self.ResultsExported.emit(testcases, config)
 
         except Exception as e:

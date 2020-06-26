@@ -42,7 +42,7 @@ __BEGIN__="2020"
 # year of the latest build
 __END__="2020"
 # date and time of the buid
-__BUILDTIME__="26/06/2020 08:52:40"
+__BUILDTIME__="26/06/2020 10:01:12"
 # debug mode
 DEBUGMODE=False
 
